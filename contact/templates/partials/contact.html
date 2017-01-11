@@ -1,0 +1,34 @@
+{% load staticfiles crispy_forms_tags %}
+
+<div id = "contact-container" class="container wrapper">
+
+    <div class="goodbye">
+        <h1 id="contact-header" class="text-center">Contact</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div{% if message.tags %} class="{{ message.tags }} alert alert-success"{% endif %}>
+                    <strong>Form Sent! </strong>{{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <p class="text-center contact-p-bg"><strong>Heads Up!</strong> This is a demo form. Submitting it won't send anything.<br>
+        But try it out anyway.</p>
+        <form id="contact-form" action="{% url 'contact' %}" method="post" role="form"> 
+            {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-primary" id="contact-submit" value="submit">
+        </form>
+    </div><!-- end div.goodbye -->
+
+    {% comment %} 
+        In order for the loader to appear while the image is loading, the image must be loaded
+        locally, otherwise the javascript won't be able to tell when it's loading.
+        i.e. don't serve these images from s3.
+    {% endcomment %} 
+                 
+    <img id="contact-big-img" data-src="{% static 'img/thanks.png' %}">
+    <img id="contact-big-img-narrow" data-src="{% static 'img/thanks.png' %}">
+
+</div>

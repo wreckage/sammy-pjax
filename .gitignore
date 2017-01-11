@@ -1,0 +1,3 @@
+*.pyc
+sammy/settings/local.py
+/media/

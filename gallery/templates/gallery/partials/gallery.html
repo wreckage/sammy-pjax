@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<div id="gallery-container" class="container">
+<h1 class="text-center">Gallery</h1>
+
+{% comment %} 
+The following is commented out to allow an s3 powered gallery. Uncomment if you'd like to use the app powered gallery.
+{% endcomment %} 
+
+{% comment %}
+{% for gallery in gallery_list %}
+    {% for image in gallery.galleryimage_set.all %}
+        {% if forloop.counter == 1 %}
+            <img id="big-img" class="img-responsive center-block" src="{{ MEDIA_URL }}{{ image.img }}" alt="{{MEDIA_URL}}{{ image.img }}">
+            <div id="big-img-description" class="text-center">{{ image.description }}</div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<div id="gallery-thumbnails">
+<div class="container">
+    <div class="row">
+        {% for gallery in gallery_list %}
+            {% for image in gallery.galleryimage_set.all %}
+                <div id="gallery-col" class="col-xs-6 col-sm-3">
+                    <a href="{{ MEDIA_URL }}{{ image.img }}">
+                        <img class="thumbnail center-block" src="{{ MEDIA_URL }}{{ image.img }}" alt="{{ image.description }}">
+                    </a>
+                </div>
+            {% endfor %}
+            {% empty %}
+                No Gallery!
+            {% endfor %}
+    </div>
+</div>
+</div>
+{% endcomment %}
+
+
+    <img id="big-img" class="img-responsive center-block" alt="St. Joseph and Jesus"
+        src="http://cybernetik.s3.amazonaws.com/sammy/img/joseph.jpg">
+    <div id="big-img-description" class="text-center">St. Joseph and Jesus</div>
+
+<div id="gallery-thumbnails">
+<div class="container">
+    <div class="row">
+                <div id="gallery-col" class="col-xs-6 col-sm-3">
+                    <a href="http://cybernetik.s3.amazonaws.com/sammy/img/joseph.jpg">
+                        <img class="thumbnail center-block" 
+                        src="http://cybernetik.s3.amazonaws.com/sammy/img/joseph.jpg" alt="St. Joseph and Jesus">
+                    </a>
+                </div>
+                <div id="gallery-col" class="col-xs-6 col-sm-3">
+                    <a href="http://cybernetik.s3.amazonaws.com/sammy/img/discuss_sharp.jpg">
+                        <img class="thumbnail center-block" 
+                        src="http://cybernetik.s3.amazonaws.com/sammy/img/discuss_sharp.jpg" alt="Discuss Thrower">
+                    </a>
+                </div>
+                <div id="gallery-col" class="col-xs-6 col-sm-3">
+                    <a href="http://cybernetik.s3.amazonaws.com/sammy/img/pharaoh.jpg">
+                        <img class="thumbnail center-block" 
+                        src="http://cybernetik.s3.amazonaws.com/sammy/img/pharaoh.jpg" alt="Pharaoh Guard">
+                    </a>
+                </div>
+                <div id="gallery-col" class="col-xs-6 col-sm-3">
+                    <a href="http://cybernetik.s3.amazonaws.com/sammy/img/yuri.jpg">
+                        <img class="thumbnail center-block" 
+                        src="http://cybernetik.s3.amazonaws.com/sammy/img/yuri.jpg" alt="Yuri Dolgorukiy">
+                    </a>
+                </div>
+    </div>
+</div>
+</div>
+
+
+</div>
